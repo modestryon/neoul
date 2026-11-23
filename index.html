@@ -416,8 +416,8 @@ document.addEventListener("click",e=>{const g=e.target.closest("[data-pg]"); if(
 document.addEventListener("click",e=>{const a=e.target.closest("[data-car]"),d=e.target.closest("[data-dot]"); if(a) carGo(carI+ +a.dataset.car); if(d) carGo(+d.dataset.dot);});
 if(!matchMedia("(prefers-reduced-motion: reduce)").matches) setInterval(()=>{ if(!document.querySelector("#car:hover")) carGo(carI+1); },6000);
 window.addEventListener("hashchange",()=>{carI=0;render();});
-/* Demo auto-tour: home → shawl → bawal → try-on, 5 s each. Pauses 15 s after any click/key/scroll. Add ?tour=0 to the URL to turn it off. */
-const TOUR=["home","shawl","bawal","try-on"]; let tourI=0, tourPause=0;
+/* Demo auto-tour: home → shawl → bawal → sw-01 detail, 5 s each. Pauses 15 s after any click/key/scroll. Add ?tour=0 to the URL to turn it off. */
+const TOUR=["home","shawl","bawal","sw-01"]; let tourI=0, tourPause=0;
 if(new URLSearchParams(location.search).get("tour")!=="0"){
   ["click","keydown","wheel","touchstart"].forEach(ev=>addEventListener(ev,()=>{tourPause=Date.now()+15000;},{passive:true}));
   setInterval(()=>{ if(Date.now()<tourPause) return; tourI=(tourI+1)%TOUR.length; location.hash="#"+TOUR[tourI]; scrollTo({top:0}); },5000);
