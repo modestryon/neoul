@@ -191,6 +191,22 @@ footer ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
 }
 @media (max-width:480px){.mark{font-size:21px}.molink img{height:25.5px}.molink{margin-top:2px}.brands .x{font-size:13px;margin-top:4px}.brands{gap:10px}.head{padding-top:14px}.hero .pic{min-height:300px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* Pop-up booth screen (#popup) */
+.booth{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr);align-items:start}
+.booth-l{min-width:0}
+.booth-r{position:sticky;top:var(--hh,0px);height:calc(100vh - var(--hh,0px));background:#F3F1EB;border-left:1px solid #191816;padding:clamp(22px,3.4vh,48px) clamp(22px,2.4vw,44px);display:flex;flex-direction:column;justify-content:space-between;gap:20px;color:#191816}
+.booth-r .blogo{height:clamp(24px,3vh,38px);width:auto;display:block}
+.booth-r .cap{color:#6B6862}.booth-r .bcap{margin-top:clamp(18px,3vh,34px)}
+.booth-r .bh1{font-size:clamp(26px,4vh,46px);font-weight:400;line-height:1.12;letter-spacing:-.01em;margin:12px 0 0}
+.booth-r .bh2{font-size:clamp(19px,2.6vh,30px);font-weight:500;line-height:1.2;margin:10px 0 0}
+.booth-r p{font-size:clamp(14px,1.85vh,20px);line-height:1.5;color:#3d3b37;margin:12px 0 0}
+.booth-r .blk + .blk{border-top:1px solid #191816;padding-top:clamp(16px,2.4vh,28px)}
+.booth-r .bqr{display:flex;align-items:center;gap:clamp(14px,1.5vw,24px);margin-top:14px}
+.booth-r .bqr img{width:clamp(120px,16vh,190px);height:auto;border:1px solid #191816;background:#fff;display:block}
+.booth-r .bqr b{display:block;font-size:clamp(17px,2.3vh,25px);font-weight:600;margin-top:6px}
+.booth-r .bqr span{display:block;font-size:clamp(12px,1.55vh,16px);color:#3d3b37;margin-top:6px;line-height:1.4}
+@media (max-width:900px){.booth{grid-template-columns:1fr}.booth-r{position:static;height:auto;border-left:0;border-top:1px solid #191816}}
 </style>
 </head>
 <body>
@@ -203,6 +219,7 @@ footer ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px}
     <a href="#bawal" data-nav="bawal">Bawal</a>
     <a href="#try-on" data-nav="try-on" class="svc">Try On</a>
     <a href="#concierge" data-nav="concierge">Concierge</a>
+    <a href="#popup" data-nav="popup">Pop-Up</a>
     <button id="bagBtn" type="button" class="cap">Bag (<span id="bagN">0</span>)</button>
   </nav>
   </div>
@@ -371,6 +388,31 @@ const views = {
       <div style="display:flex;flex-direction:column;gap:14px"><h2>What comes next</h2><p>Try-on with your own photo, more drapes for each shape, and every NEOUL color in every drape. We will say so here when each part is live.</p></div>
     </div></section>`;
   },
+  /* Pop-up booth screen: one product page on the left two thirds, the Modestry On pitch and Instagram QR on the right. It stays put (the demo tour skips it). */
+  popup(){
+    const p = P.find(x=>x.id==="sw-02") || P[0];
+    return `<div class="booth"><div class="booth-l">${views.product(p)}</div>
+    <aside class="booth-r">
+      <div class="blk">
+        <img class="blogo" src="img/modestry-on-logo.png" alt="Modestry On">
+        <div class="cap bcap">Virtual try-on for modest fashion</div>
+        <h2 class="bh1">Try it on before you buy it.</h2>
+        <p>Every NEOUL scarf on this screen can be tried on with Modestry On: pick a shape, a drape and a color, and see it on a face first.</p>
+      </div>
+      <div class="blk">
+        <div class="cap">For brands</div>
+        <h3 class="bh2">Your collection can be next.</h3>
+        <p>We set up try-on for partner brands, so their customers can wear a piece before they order it. Tell us which brand you want to try on.</p>
+      </div>
+      <div class="blk">
+        <div class="cap">Tell us what you think</div>
+        <div class="bqr">
+          <img src="img/qr-modestry-on.svg" alt="QR code to instagram.com/modestry_on">
+          <div><div class="cap">Instagram</div><b>@modestry_on</b><span>Scan, follow, and send us a message with your feedback.</span></div>
+        </div>
+      </div>
+    </aside></div>`;
+  },
   concierge(){
     return `<div class="page-h" style="padding-bottom:clamp(60px,10vw,140px);display:flex;flex-direction:column;gap:18px">
       <span class="cap muted">Concierge</span>
@@ -389,8 +431,10 @@ function render(){
   else if(h==="all"||h==="shawl"||h==="bawal"){ html = views.list(h); nav = h; }
   else if(h==="try-on"){ html = views.tryon(); nav = h; }
   else if(h==="concierge"){ html = views.concierge(); nav = h; }
+  else if(h==="popup"){ html = views.popup(); nav = h; }
   else { html = views.home(); }
   view.innerHTML = html;
+  if(h==="popup"){ const hd=document.querySelector("header"); const st=hd?getComputedStyle(hd).position:""; document.documentElement.style.setProperty("--hh", (hd&&(st==="sticky"||st==="fixed")?hd.offsetHeight:0)+"px"); }
   document.querySelectorAll("nav a").forEach(a => a.dataset.nav===nav ? a.setAttribute("aria-current","page") : a.removeAttribute("aria-current"));
   if(h==="story"){ const s=$("#storyblock"); if(s) s.scrollIntoView(); } else { window.scrollTo(0,0); }
 }
@@ -420,7 +464,7 @@ window.addEventListener("hashchange",()=>{carI=0;render();});
 const TOUR=["home","shawl","bawal","sw-01"]; let tourI=0, tourPause=0;
 if(new URLSearchParams(location.search).get("tour")!=="0"){
   ["click","keydown","wheel","touchstart"].forEach(ev=>addEventListener(ev,()=>{tourPause=Date.now()+15000;},{passive:true}));
-  setInterval(()=>{ if(Date.now()<tourPause) return; tourI=(tourI+1)%TOUR.length; location.hash="#"+TOUR[tourI]; scrollTo({top:0}); },5000);
+  setInterval(()=>{ if(Date.now()<tourPause || location.hash==="#popup") return; tourI=(tourI+1)%TOUR.length; location.hash="#"+TOUR[tourI]; scrollTo({top:0}); },5000);
 }
 render(); renderBag();
 </script>
