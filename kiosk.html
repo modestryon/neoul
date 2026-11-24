@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NEOUL × Modestry On</title>
+<link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Booth screen: the NEOUL shop loops on the left, the Modestry On pitch and Instagram QR stay on the right. */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{display:flex;background:#fff;color:#191816;font-family:"Albert Sans","Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+iframe{flex:1 1 0;min-width:0;height:100%;border:0}
+aside{flex:0 0 clamp(340px,30vw,520px);height:100%;background:#F3F1EB;border-left:1px solid #191816;padding:clamp(28px,4vh,56px) clamp(26px,2.6vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:24px}
+.logo{height:clamp(26px,3.2vh,40px);width:auto;display:block}
+.cap{font-size:clamp(11px,1.25vh,14px);font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6B6862}
+h1{font-size:clamp(28px,4.3vh,50px);font-weight:400;line-height:1.12;letter-spacing:-.01em;margin-top:14px}
+p{font-size:clamp(15px,1.95vh,21px);line-height:1.5;color:#3d3b37;margin-top:14px}
+.blk + .blk{border-top:1px solid #191816;padding-top:clamp(18px,2.6vh,30px)}
+h2{font-size:clamp(20px,2.8vh,32px);font-weight:500;line-height:1.2;margin-top:10px}
+.qr{display:flex;align-items:center;gap:clamp(16px,1.6vw,26px)}
+.qr img{width:clamp(130px,17vh,200px);height:auto;border:1px solid #191816;background:#fff;display:block}
+.qr b{display:block;font-size:clamp(18px,2.4vh,26px);font-weight:600;margin-top:6px}
+.qr span{display:block;font-size:clamp(13px,1.6vh,17px);color:#3d3b37;margin-top:6px;line-height:1.4}
+@media (orientation:portrait){body{flex-direction:column}aside{flex:0 0 auto;height:auto;width:100%;border-left:0;border-top:1px solid #191816;flex-direction:row;align-items:center}.blk + .blk{border-top:0;padding-top:0}.hide-p{display:none}}
+</style></head>
+<body>
+<iframe src="index.html" title="NEOUL Collection 01"></iframe>
+<aside>
+  <div class="blk">
+    <img class="logo" src="img/modestry-on-logo.png" alt="Modestry On">
+    <div class="cap" style="margin-top:clamp(22px,3.4vh,40px)">Virtual try-on for modest fashion</div>
+    <h1>Try it on before you buy it.</h1>
+    <p>Every NEOUL scarf on this screen can be tried on with Modestry On: pick a shape, a drape and a color, and see it on a face first.</p>
+  </div>
+  <div class="blk hide-p">
+    <div class="cap">For brands</div>
+    <h2>Your collection can be next.</h2>
+    <p>We set up try-on for partner brands, so their customers can wear a piece before they order it. Tell us which brand you want to try on.</p>
+  </div>
+  <div class="blk">
+    <div class="cap">Tell us what you think</div>
+    <div class="qr" style="margin-top:14px">
+      <img src="img/qr-modestry-on.svg" alt="QR code to instagram.com/modestry_on">
+      <div><div class="cap">Instagram</div><b>@modestry_on</b><span>Scan, follow, and send us a message with your feedback.</span></div>
+    </div>
+  </div>
+</aside>
+</body></html>

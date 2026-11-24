@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 /* Layout idea: product photos sit on the same paper tone as the page, so the
-   fabric is the only colour. Ink type, hairlines, wide tracking, no cards. */
+   fabric is the only color. Ink type, hairlines, wide tracking, no cards. */
 :root{
   color-scheme: light;
   --paper:#FFFFFF;
@@ -275,12 +275,12 @@ function tryBand(){
     <div style="display:flex;flex-direction:column;gap:22px">
       <span class="tag cap" style="align-self:flex-start">Modestry On · Try-on service</span>
       <h2>See the scarf on a face before you choose.</h2>
-      <p style="color:#B9B5AD">Modestry On is a hijab try-on service by COLOROUTE. Pick a prepared model photo, read the colour and face-shape guide, then switch between NEOUL scarves and ways to wear them.</p>
+      <p style="color:#B9B5AD">Modestry On is a hijab try-on service by COLOROUTE. Pick a prepared model photo, read the color and face-shape guide, then switch between NEOUL scarves and ways to wear them.</p>
       <div class="row"><a class="btn cap" href="#try-on">How Try On works</a></div>
     </div>
     <ol class="steps">
       <li><div><b>Choose a model photo</b><span>Prepared photos for the event. No visitor faces are captured.</span></div></li>
-      <li><div><b>Read the guide</b><span>Personal colour and face shape, as styling help.</span></div></li>
+      <li><div><b>Read the guide</b><span>Personal color and face shape, as styling help.</span></div></li>
       <li><div><b>Try shapes, drapes and patterns</b><span>Shawl or bawal, dot or stripe.</span></div></li>
       <li><div><b>Open the real product</b><span>Each look links to its NEOUL scarf.</span></div></li>
     </ol>
@@ -304,13 +304,13 @@ const views = {
       <div style="display:flex;flex-direction:column;gap:18px">
         <span class="cap muted">About NEOUL</span>
         <h2>Named for the veil.</h2>
-        <p>NEOUL takes its name from an old word for a light veil worn when going out. We borrowed it for a modern modest label: quiet colour, small pattern, and fabric that is meant to be draped.</p>
+        <p>NEOUL takes its name from an old word for a light veil worn when going out. We borrowed it for a modern modest label: quiet color, small pattern, and fabric that is meant to be draped.</p>
         <p class="muted">NEOUL is made by COLOROUTE, the team behind the Modestry On try-on service. We show every scarf in the try-on first, and use what people choose there to decide what we make next.</p>
       </div>
     </div></section>`;
   },
   list(filter){
-    const t = {all:["All Products","Eight scarves in Collection 01."],shawl:["Shawl","Long rectangle, 70 × 180 cm (27.6 × 70.9 in). Fine double stripes in four colours."],bawal:["Bawal","Square, 90 × 90 cm (35.4 × 35.4 in). Small dots in four colours."]}[filter];
+    const t = {all:["All Products","Eight scarves in Collection 01."],shawl:["Shawl","Long rectangle, 70 × 180 cm (27.6 × 70.9 in). Fine double stripes in four colors."],bawal:["Bawal","Square, 90 × 90 cm (35.4 × 35.4 in). Small dots in four colors."]}[filter];
     return `<div class="page-h"><div class="gridhead"><div><h1 style="font-size:clamp(34px,5vw,60px)">${t[0]}</h1><p class="muted" style="margin-top:10px">${t[1]}</p></div>
       <div class="filters cap">${["all","shawl","bawal"].map(f=>`<a href="#${f}"><button type="button" tabindex="-1" aria-pressed="${f===filter}">${f==="all"?"All":FORM[f].label}</button></a>`).join("")}</div></div></div>
       <section class="wrap" style="padding-top:8px">${grid(filter)}</section>`;
@@ -335,7 +335,7 @@ const views = {
           <h1 style="font-size:clamp(22px,2.2vw,30px);font-weight:500">${p.pat} ${f.label} ${p.color}</h1>
           <span class="muted">${f.desc}, ${f.size}</span>
         </div>
-        <div><div class="cap muted" style="margin-bottom:10px">Colour: ${p.color}</div>
+        <div><div class="cap muted" style="margin-bottom:10px">Color: ${p.color}</div>
           <div class="chips">${sib.map(x=>`<a class="chip" href="#${x.id}" title="${x.color}" aria-label="${x.color}" aria-current="${x.id===p.id}" style="${chipStyle(x)}"></a>`).join("")}</div></div>
         <div class="tp">
           <div class="sil" aria-hidden="true">${sil}</div>
@@ -360,22 +360,22 @@ const views = {
       <div style="display:flex;flex-direction:column;gap:20px">
         <span class="cap" style="align-self:flex-start;background:var(--service);padding:5px 10px">Modestry On · Try-on service</span>
         <h1 style="font-size:clamp(34px,5vw,64px)">Try the scarf on before you choose.</h1>
-        <p>Modestry On is a separate service from NEOUL, built by the same company, COLOROUTE. It shows how a hijab's shape, drape, colour and pattern sit around a face, then takes you to the real product.</p>
+        <p>Modestry On is a separate service from NEOUL, built by the same company, COLOROUTE. It shows how a hijab's shape, drape, color and pattern sit around a face, then takes you to the real product.</p>
         <div class="row" style="align-items:center">${cta}<a class="btn ghost cap" href="#all">Back to the collection</a></div>
       </div>
       <div style="background:var(--panel);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;padding:16px 8px 0"><img src="img/tryon-shawl-1.webp" alt="Shawl silhouette"><img src="img/tryon-shawl-3.webp" alt="Shawl silhouette"><img src="img/tryon-shawl-5.webp" alt="Shawl silhouette"></div>
     </div>
     ${tryBand().replace('<div class="row"><a class="btn cap" href="#try-on">How Try On works</a></div>','')}
     <section class="wrap"><div class="two">
-      <div style="display:flex;flex-direction:column;gap:14px"><h2>What the event demo does</h2><p>The demo uses prepared model photos and prepared drapes of our fabrics. The colour and face-shape guide describes the model in the photo. It is a styling guide, not a rule, and not a reading of the visitor.</p></div>
-      <div style="display:flex;flex-direction:column;gap:14px"><h2>What comes next</h2><p>Try-on with your own photo, more drapes for each shape, and every NEOUL colour in every drape. We will say so here when each part is live.</p></div>
+      <div style="display:flex;flex-direction:column;gap:14px"><h2>What the event demo does</h2><p>The demo uses prepared model photos and prepared drapes of our fabrics. The color and face-shape guide describes the model in the photo. It is a styling guide, not a rule, and not a reading of the visitor.</p></div>
+      <div style="display:flex;flex-direction:column;gap:14px"><h2>What comes next</h2><p>Try-on with your own photo, more drapes for each shape, and every NEOUL color in every drape. We will say so here when each part is live.</p></div>
     </div></section>`;
   },
   concierge(){
     return `<div class="page-h" style="padding-bottom:clamp(60px,10vw,140px);display:flex;flex-direction:column;gap:18px">
       <span class="cap muted">Concierge</span>
       <h1 style="font-size:clamp(34px,5vw,64px)">Opening after launch.</h1>
-      <p>Concierge is not open yet. Until then, the Try On guide is the quickest way to find a colour and a way to wear it.</p>
+      <p>Concierge is not open yet. Until then, the Try On guide is the quickest way to find a color and a way to wear it.</p>
       <div class="row"><a class="btn cap" href="#try-on">Go to Try On</a></div>
     </div>`;
   }
