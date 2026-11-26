@@ -123,6 +123,7 @@ p{margin:0;max-width:62ch}
 .filters button{padding:4px 0;border-bottom:1px solid transparent}
 .filters button[aria-pressed="true"]{border-bottom-color:var(--ink)}
 .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:36px 14px}
+@media (min-width:1000px){.grid.g5{grid-template-columns:repeat(5,1fr)}}
 .card{display:flex;flex-direction:column;gap:10px}
 .card .ph{position:relative;aspect-ratio:3/4;overflow:hidden;background:var(--tile)}
 .card .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .35s}
@@ -257,10 +258,12 @@ const P = [
   {id:"sw-02", form:"shawl", pat:"Stripe", color:"Warm Taupe",  chip:["#E7E5D8","#9C8E7E"]},
   {id:"sw-03", form:"shawl", pat:"Stripe", color:"Deep Olive",  chip:["#E3E2CE","#5C6145"]},
   {id:"sw-04", form:"shawl", pat:"Stripe", color:"Near Black",  chip:["#EBECDE","#2B2A28"]},
+  {id:"sw-05", form:"shawl", pat:"Stripe", color:"Dusty Blue",  chip:["#EBECDE","#566C86"]},
   {id:"bw-01", form:"bawal", pat:"Dot",    color:"Olive Greige",chip:["#999B83","#3B3D33"]},
   {id:"bw-02", form:"bawal", pat:"Dot",    color:"Blue Gray",   chip:["#8C9B9E","#33393B"]},
   {id:"bw-03", form:"bawal", pat:"Dot",    color:"Warm Sand Taupe", chip:["#A8977D","#3F372C"]},
-  {id:"bw-04", form:"bawal", pat:"Dot",    color:"Smoky Gray",  chip:["#858881","#2F302E"]}
+  {id:"bw-04", form:"bawal", pat:"Dot",    color:"Smoky Gray",  chip:["#858881","#2F302E"]},
+  {id:"bw-05", form:"bawal", pat:"Dot",    color:"Dusty Mauve", chip:["#A58C8C","#3A2C2E"]}
 ];
 const FORM = {
   bawal:{label:"Bawal", size:"90 × 90 cm (35.4 × 35.4 in)", desc:"Square scarf"},
@@ -285,7 +288,7 @@ function card(p){
 }
 function grid(filter){
   const list = P.filter(p => filter==="all" || p.form===filter);
-  return `<div class="grid">${list.map(card).join("")}</div>`;
+  return `<div class="grid${list.length===5?" g5":""}">${list.map(card).join("")}</div>`;
 }
 function tryBand(){
   return `<section class="band" style="padding:0"><div class="in">
@@ -327,7 +330,7 @@ const views = {
     </div></section>`;
   },
   list(filter){
-    const t = {all:["All Products","Eight scarves in Collection 01."],shawl:["Shawl","Long rectangle, 70 × 180 cm (27.6 × 70.9 in). Fine double stripes in four colors."],bawal:["Bawal","Square, 90 × 90 cm (35.4 × 35.4 in). Small dots in four colors."]}[filter];
+    const t = {all:["All Products","Eight scarves in Collection 01."],shawl:["Shawl","Long rectangle, 70 × 180 cm (27.6 × 70.9 in). Fine double stripes in five colors."],bawal:["Bawal","Square, 90 × 90 cm (35.4 × 35.4 in). Small dots in five colors."]}[filter];
     return `<div class="page-h"><div class="gridhead"><div><h1 style="font-size:clamp(34px,5vw,60px)">${t[0]}</h1><p class="muted" style="margin-top:10px">${t[1]}</p></div>
       <div class="filters cap">${["all","shawl","bawal"].map(f=>`<a href="#${f}"><button type="button" tabindex="-1" aria-pressed="${f===filter}">${f==="all"?"All":FORM[f].label}</button></a>`).join("")}</div></div></div>
       <section class="wrap" style="padding-top:8px">${grid(filter)}</section>`;
